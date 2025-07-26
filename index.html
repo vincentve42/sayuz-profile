@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayuz</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="{home:true, about: false, talk: false, play:false, isstarted:false}">
+    <h3 id="judul" style="color: white; justify-self: center; padding-left: 30px; animation-name: juduls; animation-duration: 10s; animation-iteration-count: infinite;">Welkam to Sayuz Universe</h3>
+    <div class="menu"> <!-- Main Menu-->
+        
+        <ul style="display: flex; ">
+           
+            <div @click="home=false; about=true; talk=false; play=false;" style="position: absolute; margin-top: 90px; margin-left: 60px;">
+                <img src="img/phone.gif"  style="border-radius: 100%; width: 32px; height: 32px; margin-left: 15px;" alt="" srcset="">
+            <li>
+                
+                About Me
+            </li>
+            </div>
+            
+            <div @click="home=false; about=false; talk=true; play=false;" style="position: absolute; margin-left: 100px;">
+                <img src="img/about-me.gif"  style="border-radius: 100%; width: 32px; height: 32px; margin-left: 15px;" alt="" srcset="">
+            <li>
+                
+                Talk to me
+            </li>
+            </div >
+           
+            <li>
+                
+                <img src="img/earth.gif" sizes="" alt="" srcset="">
+            </li>
+            <div @click="home=false; about=false; talk=false; play=true;" style="position: absolute; margin-left: -100px;">
+                <img src="img/game.gif"  style="border-radius: 100%; width: 32px; height: 32px; margin-left: 15px;" alt="" srcset="">
+            <li style="margin-left: -6px; ">
+                
+                Play Game
+            </li>
+            </div>
+
+            <div @click="home=true; about=false; talk=false; play=false;" style="position: absolute; margin-top: 90px; margin-left: -60px;">
+                <img src="img/home.gif"  style="border-radius: 100%; width: 32px; height: 32px; margin-left: 15px;" alt="" srcset="">
+            <li style="margin-left: 10px;">
+                
+                Home
+            </li>
+            </div >
+            
+        </ul>
+    </div>
+    <div x-show="home" style="justify-self: center; color: white; margin-top: 100px; margin-left: 30px; width: 512px;">
+        <h3 style="text-align: center;">Sayuz Universe</h3>
+        <p>Ladies and gentlements welcome to my personal website made with html, css, and javascript. This website is inspired by 1995 website, hope your enjoy my design.</p>
+        <p>Im so amazed by old website, specially from 1990s era because, 1990s websites feels so pure, and no bots or anything else that feels empty.</p>
+        <p>So i created this website by myself as a one of 150 project of web development, this web is part of web 1.0</p>
+    </div>
+     <div x-show="about" style="justify-self: center; color: white; margin-top: 100px; margin-left: 30px; width: 512px;">
+        <h3 style="text-align: center;">About Me</h3>
+        <p>Im 18 Y.o from Indonesian, 3 things that i love are music, code, and books.</p>
+        <p>I can play guitar, and piano ( pop music ). I also can code in different language, which are php, javascript, c++, pawn, typescript, python </p>
+        <p>My main framework are laravel (php), react, alpine ( js, and ts ), samp ( pawn )</p>
+        <p>Im currently learning ruby, go, c#, and perl.</p>
+    </div>
+    <div x-show="talk" style="justify-self: center; color: white; margin-top: 100px; margin-left: 30px; width: 512px;">
+        <h3 style="text-align: center;">Chat Me :)</h3>
+        <p style="text-align: center;" id="respon"></p>
+        <div style="text-align: center;">
+        <input id="" type="text" style="padding: 1px;" placeholder="chat">
+        <button onclick="Response()">Send</button>
+        </div>
+    </div>
+     <div x-show="play" style="justify-self: center; color: white; margin-top: 100px; margin-left: 30px; width: 512px;">
+        <h3 style="text-align: center;">Guess The Number</h3>
+        <div style="justify-self: center;">
+            <button @click="isstarted=true;" onclick="NewNUmber()" id="games" style="padding: 3px;">Start The Game!!!!!!</button>
+        </div>
+        <p style="text-align: center;" id="tebak"></p>
+        <div style="text-align: center;" x-show="isstarted">
+        <input id="guess" type="number" style="padding: 1px;" placeholder="Tebak">
+        <button onclick="Guess()">Send</button>
+        </div>
+    </div>
+    <div style="justify-self:center; margin-top:  256px; color: white;">
+        <p>1997@ Copyright Sayuz.ltd</p>
+    </div>
+    <script>
+
+        // setup
+        var response = document.getElementById('respon')
+        var tebak = document.getElementById('tebak')
+        var games = document.getElementById('games')
+        var guess_number = 0;
+        function Response()
+        {
+            var random = Math.floor(Math.random() * 3)
+            if(random == 0)
+            {
+                response.innerHTML = "Halo Pengirim";
+            }
+            if(random == 1)
+            {
+                response.innerHTML = "Hahaha";
+            }
+            if(random == 2)
+            {
+                response.innerHTML = "Pertanyaan mu terlalu sulit eroror 404040";
+            }
+            
+        }
+        function NewNUmber()
+        {
+            guess_number = Math.floor(Math.random() * 10001)
+            
+
+        }
+        function Guess()
+        {
+            var mantap = document.getElementById('guess').value;
+            console.log(mantap);
+
+            if(mantap < guess_number)
+            {
+                var selisih = guess_number - mantap;
+                tebak.innerHTML = "Selisih dengan bilanganmu -" +  selisih;
+                
+            }
+            if(mantap > guess_number)
+            {
+                var selisih = mantap - guess_number;
+                tebak.innerHTML = "Selisih dengan bilanganmu +" +  selisih;
+                
+            }
+            if(mantap == guess_number)
+            {
+               
+                tebak.innerHTML = "WELL WELL WELL Kamu telah berhasil  tekan tombol Ulangi";
+                games.innerHTML = "Ulangi";
+               
+            }
+        }
+    </script>
+</body>
+
+</html>
